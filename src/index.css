@@ -1,0 +1,208 @@
+@import "tailwindcss";
+
+/* ============================================================
+   LeadSpot Premium — Design System 2.0
+   Quiet Luxury · Intellectual · Minimal · Purposeful
+   ============================================================ */
+
+@theme {
+  /* ===== Typography ===== */
+  --font-sans: "Inter", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+  --font-display: "Plus Jakarta Sans", "Inter", sans-serif;
+  
+  /* ===== Premium Neutral System (Dark by Default) ===== */
+  --color-bg-base: #07090e;
+  --color-bg-surface: #0d121f;
+  --color-bg-elevated: #141c2e;
+  --color-bg-card: rgba(13, 18, 31, 0.6);
+  
+  /* ===== Light Mode Neutrals ===== */
+  --color-bg-base-light: #fafafa;
+  --color-bg-surface-light: #ffffff;
+  --color-bg-elevated-light: #f4f4f6;
+  --color-bg-card-light: rgba(255, 255, 255, 0.7);
+
+  /* ===== Text System ===== */
+  --color-text-title: #f8fafc;
+  --color-text-body: #94a3b8;
+  --color-text-meta: #64748b;
+  --color-text-muted: #475569;
+
+  --color-text-title-light: #0f172a;
+  --color-text-body-light: #475569;
+  --color-text-meta-light: #64748b;
+  --color-text-muted-light: #94a3b8;
+
+  /* ===== Accents (Quiet & Intentional) ===== */
+  --color-accent: #6366f1; /* Indigo */
+  --color-accent-soft: rgba(99, 102, 241, 0.15);
+  --color-accent-muted: rgba(99, 102, 241, 0.4);
+  
+  /* ===== Status (Semantic & Muted) ===== */
+  --color-status-neutral: #64748b;
+  --color-status-success: #10b981;
+  --color-status-warning: #f59e0b;
+  --color-status-error: #ef4444;
+  --color-status-info: #3b82f6;
+
+  /* ===== Effects ===== */
+  --shadow-premium: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -2px rgba(0, 0, 0, 0.1);
+  --shadow-glass: 0 8px 32px 0 rgba(0, 0, 0, 0.3);
+  --radius-lg: 12px;
+  --radius-xl: 16px;
+  --radius-2xl: 24px;
+}
+
+/* ============================================================
+   Base Layer
+   ============================================================ */
+
+html, body, #root {
+  height: 100%;
+  background-color: var(--color-bg-base);
+  color: var(--color-text-body);
+  font-family: var(--font-sans);
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  overflow-y: auto;
+  transition: background-color 0.4s var(--ease-soft), color 0.4s var(--ease-soft);
+}
+
+[data-theme="light"] {
+  --color-bg-base: var(--color-bg-base-light);
+  --color-bg-surface: var(--color-bg-surface-light);
+  --color-bg-elevated: var(--color-bg-elevated-light);
+  --color-bg-card: var(--color-bg-card-light);
+  
+  --color-text-title: var(--color-text-title-light);
+  --color-text-body: var(--color-text-body-light);
+  --color-text-meta: var(--color-text-meta-light);
+  --color-text-muted: var(--color-text-muted-light);
+  
+  --color-accent-soft: rgba(99, 102, 241, 0.08);
+}
+
+/* ============================================================
+   Glassmorphism Utility
+   ============================================================ */
+
+.glass-surface {
+  background: var(--color-bg-card);
+  backdrop-filter: blur(12px) saturate(180%);
+  -webkit-backdrop-filter: blur(12px) saturate(180%);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+}
+
+[data-theme="light"] .glass-surface {
+  border: 1px solid rgba(0, 0, 0, 0.05);
+}
+
+/* ============================================================
+   Typography Polish
+   ============================================================ */
+
+h1, h2, h3, h4 {
+  color: var(--color-text-title);
+  font-family: var(--font-display);
+  font-weight: 600;
+  letter-spacing: -0.02em;
+  text-wrap: balance;
+}
+
+.tnum {
+  font-variant-numeric: tabular-nums;
+  letter-spacing: -0.01em;
+}
+
+/* ============================================================
+   Scrollbar Design
+   ============================================================ */
+
+::-webkit-scrollbar {
+  width: 5px;
+  height: 5px;
+}
+
+::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+::-webkit-scrollbar-thumb {
+  background: rgba(255, 255, 255, 0.1);
+  border-radius: 10px;
+}
+
+[data-theme="light"] ::-webkit-scrollbar-thumb {
+  background: rgba(0, 0, 0, 0.1);
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: var(--color-accent-muted);
+}
+
+/* ============================================================
+   Layout Components
+   ============================================================ */
+
+.app-container {
+  display: flex;
+  height: 100dvh;
+  min-height: 100dvh;
+  min-width: 100vw;
+  overflow: clip; /* clip (not hidden) so inner scroll still works */
+}
+
+.main-content {
+  flex: 1;
+  min-width: 0; /* allow flex shrink for horizontal overflow handling */
+  display: flex;
+  flex-direction: column;
+  margin-left: 16rem; /* clear the 256px fixed sidebar — prevents table left-edge clipping */
+  padding-top: 5rem; /* clear the 80px fixed header — prevents content hiding under header */
+  padding-bottom: 4rem; /* clear the 48px in-flow footer */
+  box-sizing: border-box;
+  overflow: clip; /* contain scroll to .scroll-container; stops body double-scroll */
+  height: 100%;
+}
+
+.scroll-container {
+  flex: 1;
+  overflow-y: auto;
+  overflow-x: clip; /* scroll the wide table, but clip so no body-level horizontal scroll */
+  padding: 2rem;
+  padding-bottom: 4rem; /* extra breathing room so last row never hides under footer */
+  scroll-behavior: smooth;
+  scrollbar-gutter: stable; /* reserve scrollbar width so layout doesn't shift when it appears */
+  box-sizing: border-box;
+}
+
+/* ============================================================
+   Interactive Elements
+   ============================================================ */
+
+.btn-premium {
+  @apply flex items-center gap-2 px-4 py-2 rounded-lg font-medium transition-all duration-200;
+  background: var(--color-bg-elevated);
+  border: 1px solid rgba(255, 255, 255, 0.05);
+  color: var(--color-text-title);
+}
+
+.btn-premium:hover {
+  @apply scale-[1.02] brightness-110;
+  border-color: var(--color-accent-muted);
+}
+
+.btn-premium:active {
+  @apply scale-[0.98];
+}
+
+.card-premium {
+  @apply p-6 rounded-2xl transition-all duration-300;
+  background: var(--color-bg-surface);
+  border: 1px solid rgba(255, 255, 255, 0.03);
+}
+
+.card-premium:hover {
+  border-color: rgba(99, 102, 241, 0.2);
+  box-shadow: var(--shadow-glass);
+}
