@@ -38,7 +38,13 @@
   --color-accent-priority: #f59e0b; /* Amber — used on Priority/pitch-target views */
   --color-accent-soft: rgba(99, 102, 241, 0.15);
   --color-accent-muted: rgba(99, 102, 241, 0.4);
-  
+
+  /* ===== Semantic Surface Colors (mapped to bg-* classes) ===== */
+  --color-surface: #0d121f;
+  --color-surface-elevated: #141c2e;
+  --color-surface-pop: #0f172a;
+  --color-surface-card: #0d121f;
+
   /* ===== Status (Semantic & Muted) ===== */
   --color-status-neutral: #64748b;
   --color-status-success: #10b981;
@@ -81,6 +87,12 @@ html, body, #root {
   --color-text-muted: var(--color-text-muted-light);
   
   --color-accent-soft: rgba(99, 102, 241, 0.08);
+
+  /* Light mode surface overrides */
+  --color-surface: var(--color-bg-surface-light);
+  --color-surface-elevated: var(--color-bg-elevated-light);
+  --color-surface-pop: var(--color-bg-elevated-light);
+  --color-surface-card: var(--color-bg-card-light);
 }
 
 /* ============================================================
