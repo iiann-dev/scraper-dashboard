@@ -1,6 +1,6 @@
 import { useState, useEffect } from 'react'
 import { motion, AnimatePresence } from 'motion/react'
-import { springs, motionTokens } from '../lib/motion-tokens'
+import { motionTokens } from '../lib/motion-tokens'
 import { Copy, Globe, MapPin, Phone, PhoneOff, Share2, Check, ChevronLeft, ChevronRight, X } from 'lucide-react'
 import { isHot, hasWebsite, whatsappUrl, telUrl, timeAgo } from '../lib/helpers'
 import { STATUS_ORDER, prettyCategory, type Lead, type LeadStatus } from '../lib/types'
@@ -91,6 +91,7 @@ export default function ProspectDrawer({
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             exit={{ opacity: 0 }}
+            transition={{ duration: 0.25, ease: motionTokens.easing.sharp }}
             onClick={onClose}
           />
 
@@ -99,7 +100,11 @@ export default function ProspectDrawer({
             initial={{ x: '100%' }}
             animate={{ x: 0 }}
             exit={{ x: '100%' }}
-            transition={springs.release}
+            transition={{
+              type: 'tween',
+              duration: 0.3,
+              ease: motionTokens.easing.sharp,
+            }}
             className="fixed right-0 top-0 bottom-0 w-full sm:w-[460px] bg-surface-elevated border-l border-border shadow-2xl z-50 flex flex-col overflow-hidden"
             onClick={(e) => e.stopPropagation()}
           >
