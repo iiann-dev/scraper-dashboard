@@ -178,7 +178,7 @@ export default function ProspectDrawer({
                 className="rounded-xl overflow-hidden bg-surface-elevated border border-border p-3.5 flex flex-col gap-3"
               >
                 <div className="flex items-center justify-between">
-                  <span className="text-[11px] font-bold uppercase tracking-wider text-text-tertiary flex items-center gap-1">
+                  <span className="text-[11px] font-bold uppercase tracking-wider text-text-tertiary flex items-center gap-1.5">
                     <MapPin className="h-3.5 w-3.5 text-accent" />
                     Location & Google Maps
                   </span>
@@ -187,10 +187,10 @@ export default function ProspectDrawer({
                       href={lead.place_url}
                       target="_blank"
                       rel="noreferrer"
-                      className="text-accent hover:underline text-[12px] font-semibold flex items-center gap-0.5"
+                      className="text-accent hover:underline text-[11px] font-semibold flex items-center gap-1"
                     >
                       <span>Open Maps</span>
-                      <Share2 className="h-3 w-3" />
+                      <Share2 className="h-3.5 w-3.5" />
                     </a>
                   )}
                 </div>
