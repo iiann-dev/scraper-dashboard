@@ -87,7 +87,7 @@ export default function ProspectDrawer({
         <>
           {/* Backdrop */}
           <motion.div
-            className="fixed inset-0 bg-black/50 backdrop-blur-xs z-50"
+            className="fixed inset-0 bg-black/70 z-50"
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             exit={{ opacity: 0 }}
@@ -100,7 +100,7 @@ export default function ProspectDrawer({
             animate={{ x: 0 }}
             exit={{ x: '100%' }}
             transition={springs.release}
-            className="fixed right-0 top-0 bottom-0 w-full sm:w-[460px] bg-surface-card border-l border-border shadow-2xl z-50 flex flex-col overflow-hidden"
+            className="fixed right-0 top-0 bottom-0 w-full sm:w-[460px] bg-surface-elevated border-l border-border shadow-2xl z-50 flex flex-col overflow-hidden"
             onClick={(e) => e.stopPropagation()}
           >
             {/* Header */}
@@ -239,7 +239,7 @@ export default function ProspectDrawer({
                       backgroundImage: `url('https://maps.googleapis.com/maps/api/staticmap?size=600x160&maptype=roadmap&markers=color:blue|size:mid|label:A|${encodeURIComponent(lead.address)})')`,
                     }}
                   >
-                    <div className="bg-surface-elevated/85 backdrop-blur-sm px-2.5 py-1.5 rounded-lg flex items-center gap-1.5">
+                    <div className="bg-surface-elevated px-2.5 py-1.5 rounded-lg flex items-center gap-1.5">
                       <MapPin className="h-3.5 w-3.5 text-accent shrink-0" />
                       <span
                         className="text-[11.5px] text-text-secondary truncate max-w-[220px] leading-tight"
@@ -327,7 +327,7 @@ export default function ProspectDrawer({
                 className={`p-4 rounded-xl border flex flex-col gap-2 ${
                   withWeb
                     ? 'bg-surface-elevated border-border'
-                    : 'bg-gradient-to-br from-surface-elevated to-orange-950/10 border-orange-500/40'
+                    : 'bg-surface-elevated border-border'
                 }`}
               >
                 <div className="flex items-center justify-between">

@@ -37,6 +37,9 @@ export default function App() {
   const [statusFilter, setStatusFilter] = useState<LeadStatus | 'all'>('all')
   const [hotOnly, setHotOnly] = useState(false)
   const [density, setDensity] = useState<'comfortable' | 'compact'>('comfortable')
+  // Whether the current view is a pitch-only surface (Directory / Priority)
+  const isPitchView = view === 'leads' || view === 'hot'
+
 
   // Selection & Drawer States
   const [selectedIds, setSelectedIds] = useState<Set<number>>(new Set())
@@ -78,13 +81,16 @@ export default function App() {
   // Filtered Leads
   const filteredLeads = useMemo(() => {
     return all.filter((l) => {
+      // D5: Directory & Priority show only untouched leads (pitch targets).
+      // Leads with an active sales status live only in Pipeline / Intelligence.
+      if (isPitchView && l.status !== 'not contacted yet') return false
       if (hotOnly && !isHot(l)) return false
       if (cityFilter && l.category !== cityFilter) return false
       if (statusFilter !== 'all' && l.status !== statusFilter) return false
       if (!matchesSearch(l, search)) return false
       return true
     })
-  }, [all, hotOnly, cityFilter, statusFilter, search])
+  }, [all, isPitchView, hotOnly, cityFilter, statusFilter, search])
 
   // Selection helpers
   const handleToggle = (id: number) => {
@@ -272,7 +278,8 @@ export default function App() {
                     transition={{ duration: 0.3 }}
                     className="flex flex-col gap-5"
                   >
-                    <IntelligenceSurface leads={all} />
+                    {/* D2: IntelligenceSurface only on Priority (hot) view, pitch-themed */}
+{view === 'hot' && <IntelligenceSurface leads={all} pitchMode />}
 
                     <ControlBar
                       categoryFilter={cityFilter}
@@ -306,6 +313,7 @@ export default function App() {
 
                     <ProspectTable
                       rows={filteredLeads}
+                      priority={view === 'hot'}
                       selected={selectedIds}
                       onToggle={handleToggle}
                       onToggleAll={handleToggleAll}
@@ -360,7 +368,7 @@ export default function App() {
         </main>
 
         {/* Footer */}
-        <footer className="h-12 border-t border-border px-8 flex items-center justify-between text-[11.5px] text-text-tertiary select-none">
+        <footer className="h-12 px-8 flex items-center justify-between text-[11.5px] text-text-tertiary select-none">
           <span>LeadSpot B2B Prospecting Engine · Built for Alfiano</span>
           <span className="flex items-center gap-1.5">
             <span className="w-1.5 h-1.5 rounded-full bg-success animate-pulse-dot" />

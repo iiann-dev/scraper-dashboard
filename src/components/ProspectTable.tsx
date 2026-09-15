@@ -43,6 +43,7 @@ export default function ProspectTable({
   onStatusChange,
   onOpenDrawer,
   density = 'comfortable',
+  priority = false,
 }: {
   rows: Lead[]
   selected: Set<number>
@@ -54,6 +55,7 @@ export default function ProspectTable({
   onStatusChange: (id: number, s: LeadStatus) => void
   onOpenDrawer: (lead: Lead) => void
   density?: 'comfortable' | 'compact'
+  priority?: boolean
 }) {
   const [sortKey, setSortKey] = useState<SortKey>('id')
   const [sortDir, setSortDir] = useState<1 | -1>(1)
@@ -218,7 +220,7 @@ export default function ProspectTable({
                   animate={{ opacity: 1, x: 0 }}
                   transition={{ duration: 0.2 }}
                   onClick={() => onOpenDrawer(lead)}
-                  className={`hover:bg-surface-elevated/60 transition-colors group cursor-pointer ${
+                  className={`hover:bg-surface-elevated/60 transition-colors group cursor-pointer border-l-${priority && hot ? '3' : '0'} border-amber-400 ${priority && hot ? 'bg-amber-500/3' : ''} ${
                     checked ? 'bg-blue-500/5' : ''
                   }`}
                 >

@@ -1,4 +1,4 @@
-import { Search, Download, Settings2 } from 'lucide-react'
+import { Search, Download } from 'lucide-react'
 import type { LeadStatus } from '../lib/types'
 
 export default function Header({
@@ -34,15 +34,11 @@ export default function Header({
       </div>
 
       <div className="flex items-center gap-3">
-        <button className="flex items-center gap-2 px-4 py-2 bg-bg-surface hover:bg-bg-elevated text-text-title rounded-xl border border-white/5 transition-all font-medium text-[13px]">
-          <Settings2 className="w-4 h-4 text-text-muted" />
-          Configure
-        </button>
         <button 
           onClick={onExportCsv}
           className="flex items-center gap-2 px-4 py-2 bg-accent hover:bg-accent-soft text-white rounded-xl shadow-lg shadow-accent/20 transition-all font-medium text-[13px]"
         >
-          <Download className="w-4 h-4" />
+          <Download className="h-4 w-4" />
           Export Report
         </button>
       </div>

@@ -3,14 +3,9 @@ import {
   Database, 
   LayoutDashboard, 
   TrendingUp, 
-  Zap, 
-  Settings, 
-  LogOut,
-  Moon,
-  Sun,
+  Zap,
   ShieldCheck
 } from 'lucide-react'
-import { useTheme } from '../lib/theme'
 import type { View } from '../lib/types'
 
 export default function Sidebar({
@@ -24,7 +19,6 @@ export default function Sidebar({
   totalLeads: number
   hotLeads: number
 }) {
-  const { theme, toggleTheme } = useTheme()
 
   const items = [
     { id: 'leads', label: 'Directory', icon: Database, color: 'text-blue-400' },
@@ -74,8 +68,8 @@ export default function Sidebar({
         })}
       </nav>
 
-      {/* Pinned footer block — shrink-0 so it never gets clipped on short viewports */}
-      <div className="shrink-0 px-6 py-8 space-y-6">
+      {/* DB Stats card — pinned, never clipped */}
+      <div className="shrink-0 px-6 pb-8">
         <div className="p-4 rounded-2xl bg-bg-surface border border-white/5 space-y-3">
           <div className="flex items-center justify-between">
             <span className="text-[11px] font-medium text-text-muted">Database</span>
@@ -90,34 +84,6 @@ export default function Sidebar({
               <span className="text-text-body">High Intent</span>
               <span className="font-bold text-accent tnum">{hotLeads.toLocaleString()}</span>
             </div>
-          </div>
-        </div>
-
-        <div className="flex flex-col gap-1">
-          <button 
-            onClick={toggleTheme}
-            className="w-full flex items-center gap-3 px-4 py-2.5 rounded-lg text-text-muted hover:text-text-title hover:bg-white/5 transition-all"
-          >
-            {theme === 'dark' ? <Sun className="w-4 h-4" /> : <Moon className="w-4 h-4" />}
-            <span className="text-[12px] font-medium">{theme === 'dark' ? 'Light Mode' : 'Dark Mode'}</span>
-          </button>
-          <button className="w-full flex items-center gap-3 px-4 py-2.5 rounded-lg text-text-muted hover:text-text-title hover:bg-white/5 transition-all">
-            <Settings className="w-4 h-4" />
-            <span className="text-[12px] font-medium">Settings</span>
-          </button>
-          <button className="w-full flex items-center gap-3 px-4 py-2.5 rounded-lg text-red-400/70 hover:text-red-400 hover:bg-red-400/5 transition-all">
-            <LogOut className="w-4 h-4" />
-            <span className="text-[12px] font-medium">Logout</span>
-          </button>
-        </div>
-
-        <div className="flex items-center gap-3 pt-2">
-          <div className="w-8 h-8 rounded-full bg-gradient-to-tr from-accent to-indigo-400 flex items-center justify-center text-white text-[11px] font-bold shadow-lg shadow-accent/20">
-            A
-          </div>
-          <div className="flex flex-col">
-            <span className="text-xs font-bold text-text-title leading-none">Alfiano S.</span>
-            <span className="text-[10px] text-text-muted mt-1">Lead Architect</span>
           </div>
         </div>
       </div>

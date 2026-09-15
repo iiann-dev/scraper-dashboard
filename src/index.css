@@ -35,6 +35,7 @@
 
   /* ===== Accents (Quiet & Intentional) ===== */
   --color-accent: #6366f1; /* Indigo */
+  --color-accent-priority: #f59e0b; /* Amber — used on Priority/pitch-target views */
   --color-accent-soft: rgba(99, 102, 241, 0.15);
   --color-accent-muted: rgba(99, 102, 241, 0.4);
   
